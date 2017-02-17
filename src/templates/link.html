@@ -1,0 +1,40 @@
+<html>
+<title>Enter link</title>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous">
+  </script>	
+</head>
+<script type="text/javascript">
+function Check(){
+	$('input[type="submit"]').attr('disabled', true);
+	$('input[type="text"]').on('keyup',function() {
+    if($(this).val() != '') {
+        $('input[type="submit"]').attr('disabled' , false);
+    }else{
+        $('input[type="submit"]').attr('disabled' , true);
+    }
+});
+}
+</script>
+<body onload="Check()">
+<h2 align="center"> Enter the link to be converted</h2>
+<br>
+<div align="center">
+<form method='GET' action="display">
+<input type="text" name='q' placeholder="Link" value ='{{ request.GET.q }}' >
+<input type="submit" value="display">
+</form>
+{% if messages %}
+	<div class='messages'>
+	    {% for message in messages %}
+	    <div {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</div>
+	    {% endfor %}
+	</div>
+{% endif %}
+</body>
+</html>
+
+
